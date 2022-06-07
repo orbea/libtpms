@@ -284,6 +284,7 @@ RuntimeAlgorithmSetProfile(
 		continue;
 	    cmplen = MAX(strlen(s_AlgorithmProperties[algId].name), toklen);
 	    if (!strncmp(token, s_AlgorithmProperties[algId].name, cmplen)) {
+		TPMLIB_LogPrintf("Enabling %s: 0x%x\n", s_AlgorithmProperties[algId].name, algId);
 		SET_BIT(algId, RuntimeAlgorithm->enabledAlgorithms);
 		found = true;
 		break;
@@ -299,6 +300,7 @@ RuntimeAlgorithmSetProfile(
 		}
 		RuntimeAlgorithm->algosMinimumKeySizes[algId] = (UINT16)minKeySize;
 		found = true;
+		TPMLIB_LogPrintf("Set minimum key size for %s: %u\n", s_AlgorithmProperties[algId].name, RuntimeAlgorithm->algosMinimumKeySizes[algId]);
 		break;
 	    }
 	}
@@ -371,6 +373,8 @@ RuntimeAlgorithmCheckEnabled(
 			     TPM_ALG_ID	              algId      // IN: the algorithm to check
 			     )
 {
+    TPMLIB_LogPrintf("IsEnEnabled(0x%x = '%s'): %d\n",
+                     algId, s_AlgorithmProperties[algId].name, TEST_BIT(algId, RuntimeAlgorithm->enabledAlgorithms));
     if (!TEST_BIT(algId, RuntimeAlgorithm->enabledAlgorithms))
 	return FALSE;
     return TRUE;
@@ -387,10 +391,14 @@ RuntimeAlgorithmKeySizeCheckEnabled(
 {
     UINT16 minKeySize;
 
+    TPMLIB_LogPrintf("Check: %s-%d\n", s_AlgorithmProperties[algId].name, keySizeInBits);
+
     if (!RuntimeAlgorithmCheckEnabled(RuntimeAlgorithm, algId))
 	return FALSE;
 
     minKeySize = RuntimeAlgorithm->algosMinimumKeySizes[algId];
+
+    TPMLIB_LogPrintf("  MinKeySize: %u  current key's Size: %u\n", minKeySize, keySizeInBits);
     if (minKeySize > keySizeInBits)
 	return FALSE;
 

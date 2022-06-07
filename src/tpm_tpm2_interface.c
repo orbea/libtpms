@@ -789,6 +789,8 @@ static TPM_RESULT TPM2_SetProfile(const char *profile)
     free(g_profile);
     g_profile = copyProfile;
 
+    TPMLIB_LogPrintf(" profile for new TPM: %s\n", profile);
+
     return TPM_SUCCESS;
 }
 
