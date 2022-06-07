@@ -136,7 +136,7 @@ static const struct {
     { .name = ENABLED ? NAME : NULL, .canBeDisabled = CANDISABLE }
 
     [TPM_ALG_RSA] = ASYMMETRIC(ALG_RSA, "rsa", s_KeySizesRSA, false),
-    [TPM_ALG_TDES] = SYMMETRIC(ALG_TDES, "tdes", s_KeySizesTDES, false),
+    [TPM_ALG_TDES] = SYMMETRIC(ALG_TDES, "tdes", s_KeySizesTDES, true),
     [TPM_ALG_SHA1] = HASH(ALG_SHA1, "sha1", false),
     [TPM_ALG_HMAC] = SIGNING(ALG_HMAC, "hmac", false),
     [TPM_ALG_AES] = SYMMETRIC(ALG_AES, "aes", s_KeySizesAES, false), // never disable: context encryption
