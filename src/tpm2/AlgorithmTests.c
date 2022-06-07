@@ -216,6 +216,9 @@ TestSymmetricAlgorithm(
     // libtpms added beging
     if (test->dataOut[mode - TPM_ALG_CTR] == NULL)
         return;
+    /* Skip test cases whose algorithms or keysizes are runtime-disabled */
+    if (!RuntimeAlgorithmKeySizeCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm, test->alg, test->keyBits))
+        return;
     // libtpms added end
 
     //

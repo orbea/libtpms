@@ -203,6 +203,9 @@ AlgorithmCapGetImplemented(
 	    // If algID is less than the starting algorithm ID, skip it
 	    if(s_algorithms[i].algID < algID)
 		continue;
+	    if(!RuntimeAlgorithmCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm,
+					     s_algorithms[i].algID))	// libtpms added
+		continue;						// libtpms added
 	    if(algList->count < count)
 		{
 		    // If we have not filled up the return list, add more algorithms
@@ -238,7 +241,10 @@ AlgorithmGetImplementedVector(
     // Go through the list of implemented algorithms and SET the corresponding bit in
     // in the implemented vector
     for(index = (sizeof(s_algorithms) / sizeof(s_algorithms[0])) - 1;
-	index >= 0; index--)
-	SET_BIT(s_algorithms[index].algID, *implemented);
+	index >= 0; index--) {
+	if (RuntimeAlgorithmCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm,	// libtpms added
+					 s_algorithms[index].algID))		// libtpms added
+	    SET_BIT(s_algorithms[index].algID, *implemented);
+    }
     return;
 }
