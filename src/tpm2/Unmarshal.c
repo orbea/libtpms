@@ -2681,6 +2681,11 @@ TPMI_SM4_KEY_BITS_Unmarshal(TPMI_SM4_KEY_BITS *target, BYTE **buffer, INT32 *siz
     if (rc == TPM_RC_SUCCESS) {
 	switch (*target) {
 	  case 128:
+	    if (!RuntimeAlgorithmKeySizeCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm,	// libtpms added begin
+	                                             TPM_ALG_SM4,
+						     *target)) {
+		rc = TPM_RC_VALUE;
+	    }											// libtpms added end
 	    break;
 	  default:
 	    rc = TPM_RC_VALUE;
