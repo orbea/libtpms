@@ -3677,6 +3677,11 @@ TPMI_RSA_KEY_BITS_Unmarshal(TPMI_RSA_KEY_BITS *target, BYTE **buffer, INT32 *siz
 	  case 1024:
 	  case 2048:
 	  case 3072:
+	    if (!RuntimeAlgorithmKeySizeCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm,// libtpms added begin
+                                                     TPM_ALG_RSA,
+						     *target)) {
+		rc = TPM_RC_VALUE;
+	    }										// libtpms added end
 	    break;
 	  default:
 	    rc = TPM_RC_VALUE;
