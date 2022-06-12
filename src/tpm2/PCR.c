@@ -988,6 +988,7 @@ PCRCapGetAllocation(
     else
 	{
 	    *pcrSelection = gp.pcrAllocated;
+	    RuntimeAlgorithmsFilterPCRSelection(pcrSelection);
 	    return NO;
 	}
 }
