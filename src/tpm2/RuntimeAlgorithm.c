@@ -167,7 +167,7 @@ static const struct {
     [TPM_ALG_SHA3_256] = HASH(ALG_SHA3_256, "sha3-256", false),
     [TPM_ALG_SHA3_384] = HASH(ALG_SHA3_384, "sha3-384", false),
     [TPM_ALG_SHA3_512] = HASH(ALG_SHA3_512, "sha3-256", false),
-    [TPM_ALG_CMAC] = SIGNING(ALG_CMAC, "cmac", false),
+    [TPM_ALG_CMAC] = SIGNING(ALG_CMAC, "cmac", true),
     [TPM_ALG_CTR] = ENCRYPTING(ALG_CTR, "ctr", true),
     [TPM_ALG_OFB] = ENCRYPTING(ALG_OFB, "ofb", true),
     [TPM_ALG_CBC] = ENCRYPTING(ALG_CBC, "cbc", true),
