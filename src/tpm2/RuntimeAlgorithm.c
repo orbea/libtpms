@@ -149,7 +149,7 @@ static const struct {
     [TPM_ALG_NULL] = OTHER(true, "null", false),
     [TPM_ALG_SM4] = SYMMETRIC(ALG_SM4, "sm4", s_KeySizesSM4, true),
     [TPM_ALG_RSASSA] = SIGNING(ALG_RSASSA, "rsassa", true),
-    [TPM_ALG_RSAES] = ENCRYPTING(ALG_RSAES, "rsaes", false),
+    [TPM_ALG_RSAES] = ENCRYPTING(ALG_RSAES, "rsaes", true),
     [TPM_ALG_RSAPSS] = SIGNING(ALG_RSAPSS, "rsapss", true),
     [TPM_ALG_OAEP] = ENCRYPTING(ALG_OAEP, "oaep", false), // never disable: CryptSecretEncrypt/Decrypt needs it
     [TPM_ALG_ECDSA] = SIGNING(ALG_ECDSA, "ecdsa", false),
