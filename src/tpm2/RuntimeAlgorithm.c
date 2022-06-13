@@ -157,7 +157,7 @@ static const struct {
     [TPM_ALG_ECDAA] = OTHER(ALG_ECDAA, "ecdaa", false),
     [TPM_ALG_SM2] = SIGNING(ALG_SM2, "sm2", false),
     [TPM_ALG_ECSCHNORR] = SIGNING(ALG_ECSCHNORR, "ecschnorr", false),
-    [TPM_ALG_ECMQV] = OTHER(ALG_ECMQV, "ecmqv", false),
+    [TPM_ALG_ECMQV] = OTHER(ALG_ECMQV, "ecmqv", true),
     [TPM_ALG_KDF1_SP800_56A] = HASH(ALG_KDF1_SP800_56A, "kdf1-sp800-56a", false),
     [TPM_ALG_KDF2] = HASH(ALG_KDF2, "kdf2", false),
     [TPM_ALG_KDF1_SP800_108] = HASH(ALG_KDF1_SP800_108, "kdf1-sp800-108", false),
