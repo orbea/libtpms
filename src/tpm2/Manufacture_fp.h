@@ -66,7 +66,8 @@
 
 LIB_EXPORT int
 TPM_Manufacture(
-		int             firstTime
+		int             firstTime,
+		const char     *newProfile	// libtpms added
 		);
 LIB_EXPORT int
 TPM_TearDown(

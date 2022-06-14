@@ -394,7 +394,7 @@ TpmFailureMode(
 	    if(count == 0 && pt == 0 && s_failCode == FATAL_ERROR_NV_UNRECOVERABLE)
 		{
 		    g_manufactured = FALSE;
-		    TPM_Manufacture(0);
+		    TPM_Manufacture(0, NULL);
 		}
 	    if(count > 0)
 		count = 1;
