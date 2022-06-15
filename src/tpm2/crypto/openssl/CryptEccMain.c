@@ -255,6 +255,10 @@ CryptCapGetECCCurve(
 		continue;
             if (!CryptEccIsCurveRuntimeUsable(curve)) // libtpms added: runtime filter supported curves
                 continue;
+	    if (!RuntimeAlgorithmKeySizeCheckEnabled(&g_RuntimeProfile.RuntimeAlgorithm,
+						     TPM_ALG_ECC,
+						     CryptEccGetKeySizeForCurve(curve)))
+		continue;
 	    if(curveList->count < maxCount)
 		{
 		    // If we have not filled up the return list, add more curves to
