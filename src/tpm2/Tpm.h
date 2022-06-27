@@ -77,5 +77,6 @@
 #include "GpMacros.h"           // Define additional macros
 #include "Global.h"             // Define other TPM types
 #include "InternalRoutines.h"   // Function prototypes
+#include "RuntimeProfile_fp.h"	// libtpms added
 
 #endif // _TPM_H_

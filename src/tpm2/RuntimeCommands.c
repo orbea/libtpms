@@ -60,7 +60,7 @@
 
 #include <errno.h>
 
-#include "RuntimeCommands_fp.h"
+#include "Tpm.h"
 #include "tpm_library_intern.h"
 
 #if VENDOR_COMMAND_COUNT != 0
