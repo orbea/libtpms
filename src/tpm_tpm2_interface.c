@@ -386,6 +386,7 @@ static char *TPM2_GetInfo(enum TPMLIB_InfoFlags flags)
         "\"Enabled\":%s,"
         "\"Disabled\":%s"
     "}";
+    const char *tpmProfile_temp = "\"ActiveProfile\":%s";
     char *fmt = NULL, *buffer;
     bool printed = false;
     char *tpmattrs = NULL;
@@ -395,6 +396,8 @@ static char *TPM2_GetInfo(enum TPMLIB_InfoFlags flags)
     char *runtimeAlgos[RUNTIME_ALGO_NUM] = { NULL, };
     enum RuntimeAlgorithmType rat;
     char *runtimeAlgorithms = NULL;
+    char *profile = NULL;
+    const char *profileJSON;
     size_t n;
 
     if (!(buffer = strdup("{%s%s%s}")))
@@ -467,6 +470,19 @@ static char *TPM2_GetInfo(enum TPMLIB_InfoFlags flags)
         printed = true;
     }
 
+    if ((flags & TPMLIB_INFO_ACTIVE_PROFILE) &&
+        (profileJSON = RuntimeProfileGetJSON(&g_RuntimeProfile))) {
+        fmt = buffer;
+        buffer = NULL;
+        if (asprintf(&profile, tpmProfile_temp, profileJSON) < 0)
+            goto error;
+        if (asprintf(&buffer, fmt, printed ? "," : "",
+                     profile, "%s%s%s") < 0)
+            goto error;
+        free(fmt);
+        printed = true;
+    }
+
     /* nothing else to add */
     fmt = buffer;
     buffer = NULL;
@@ -477,6 +493,7 @@ exit:
     free(fmt);
     free(tpmattrs);
     free(tpmfeatures);
+    free(profile);
     for (rat = RUNTIME_ALGO_IMPLEMENTED; rat < RUNTIME_ALGO_NUM; rat++)
         free(runtimeAlgos[rat]);
     free(runtimeAlgorithms);
