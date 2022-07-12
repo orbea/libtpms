@@ -23,13 +23,15 @@ check_PROGRAMS += \
 	nvram_offsets \
 	tpm2_createprimary \
 	tpm2_pcr_read \
-	tpm2_selftest
+	tpm2_selftest \
+	tpm2_setprofile
 
 TESTS += \
 	nvram_offsets \
 	tpm2_createprimary.sh \
 	tpm2_pcr_read.sh \
-	tpm2_selftest.sh
+	tpm2_selftest.sh \
+	tpm2_setprofile.sh
 endif
 
 nvram_offsets_SOURCES = nvram_offsets.c
